@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1F5D3A;
+  --color-primary-hover: #174A2E;
+  --color-accent: #C8963E;
+  --color-background: #FAF8F3;
+  --color-surface: #FFFFFF;
+  --color-text: #1E293B;
+  --color-muted: #64748B;
+  --color-border: #E7E2D6;
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+
+  --font-heading: "Noto Serif Bengali", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-body: "Hind Siliguri", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --radius-xl: 2xl;
+}
+
+html {
+  lang: bn;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-text antialiased;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.35;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  @apply tracking-normal;
+}
+
+* {
+  outline: none;
+}
+
+*:focus-visible {
+  @apply ring-2 ring-primary ring-offset-2 rounded-md;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.leaf-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: #E7E2D6;
+  color: #1F5D3A;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.aspect-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sr-only-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.overflow-hidden-important {
+  overflow: hidden !important;
+}
+
+.reduced-motion *, .reduced-motion *::before, .reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
