@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { X } from "lucide-react";
 import type { Product } from "../types";
 import { formatBdt } from "../utils/bn";
@@ -19,15 +19,16 @@ export function ProductDetailModal({
   onOrderNow,
 }: ProductDetailModalProps) {
   const { addToCart } = useCart();
+  const [qty, setQty] = useState(1);
 
   const handleAdd = useCallback(() => {
-    addToCart(product);
-  }, [addToCart, product]);
+    addToCart(product, qty);
+  }, [addToCart, product, qty]);
 
   const handleOrderNow = useCallback(() => {
-    addToCart(product);
+    addToCart(product, qty);
     onOrderNow?.(product);
-  }, [addToCart, product, onOrderNow]);
+  }, [addToCart, product, qty, onOrderNow]);
 
   if (!open) return null;
 
@@ -86,7 +87,7 @@ export function ProductDetailModal({
               <span className="text-sm text-muted">{product.sizeBn}</span>
             </div>
             <div className="pt-2">
-              <QuantityStepper value={1} onChange={() => {}} disabled />
+              <QuantityStepper value={qty} onChange={setQty} />
             </div>
             <div className="pt-3 flex gap-2">
               <button

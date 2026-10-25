@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="হার্বাল পানীয় প্লেসহোল্ডার">
+  <rect width="600" height="600" fill="#E7E2D6"/>
+  <circle cx="300" cy="300" r="212" fill="#FAF8F3"/>
+  <circle cx="300" cy="300" r="212" fill="none" stroke="#1F5D3A" stroke-opacity=".14" stroke-width="2"/>
+  <rect x="272" y="146" width="56" height="34" rx="8" fill="#C8963E"/>
+  <rect x="282" y="180" width="36" height="46" fill="#1F5D3A"/>
+  <rect x="208" y="222" width="184" height="238" rx="38" fill="#1F5D3A"/>
+  <rect x="238" y="298" width="124" height="96" rx="12" fill="#FAF8F3"/>
+  <path d="M300 320c-16 20-26 32-26 44a26 26 0 0 0 52 0c0-12-10-24-26-44Z" fill="#C8963E"/>
+  <path d="M430 214c-26 8-40 26-44 52 28-2 42-20 44-52Z" fill="#1F5D3A" opacity=".22"/>
+  <path d="M170 214c26 8 40 26 44 52-28-2-42-20-44-52Z" fill="#1F5D3A" opacity=".22"/>
+</svg>

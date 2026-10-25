@@ -1,7 +1,6 @@
 import type { Product } from "../types";
 import { Zap, ArrowRight } from "lucide-react";
 import { formatBdt } from "../utils/bn";
-import { useCart } from "../context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -16,15 +15,13 @@ export function ProductCard({
   onOrderNow,
   onDetail,
 }: ProductCardProps) {
-  const { addToCart } = useCart();
-
   const handleAdd = () => {
-    addToCart(product);
+    // Adding to cart happens once in the parent's onAdd handler.
     onAdd?.(product);
   };
 
   const handleOrderNow = () => {
-    addToCart(product);
+    // Adding to cart happens exactly once in the parent's onOrderNow handler.
     onOrderNow?.(product);
   };
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="কম্বো প্যাক প্লেসহোল্ডার">
+  <rect width="600" height="600" fill="#E7E2D6"/>
+  <circle cx="300" cy="300" r="212" fill="#FAF8F3"/>
+  <circle cx="300" cy="300" r="212" fill="none" stroke="#1F5D3A" stroke-opacity=".14" stroke-width="2"/>
+  <ellipse cx="270" cy="230" rx="34" ry="24" fill="#C8963E"/>
+  <ellipse cx="330" cy="230" rx="34" ry="24" fill="#C8963E"/>
+  <rect x="168" y="252" width="264" height="60" rx="12" fill="#1F5D3A"/>
+  <rect x="192" y="312" width="216" height="168" rx="14" fill="#1F5D3A" opacity=".92"/>
+  <rect x="286" y="252" width="28" height="228" fill="#C8963E"/>
+  <path d="M420 190c-28 6-46 24-52 52 30-4 48-22 52-52Z" fill="#1F5D3A" opacity=".25"/>
+  <path d="M180 190c28 6 46 24 52 52-30-4-48-22-52-52Z" fill="#1F5D3A" opacity=".25"/>
+</svg>

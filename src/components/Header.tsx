@@ -78,11 +78,10 @@ export function Header({ onOpenCart }: HeaderProps) {
         <div key={location.pathname} className="md:hidden bg-surface border-t border-border">
           <div className="container mx-auto px-3 py-4 space-y-1">
             {NAV_LINKS.map((link) => (
-              <button
+              <Link
                 key={link.to}
-                onClick={() => {
-                  closeMenu();
-                }}
+                to={link.to}
+                onClick={closeMenu}
                 className={`w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-text transition-colors ${
                   location.pathname === link.to ? "bg-[#F3F2EA] text-primary" : ""
                 }`}
@@ -93,7 +92,7 @@ export function Header({ onOpenCart }: HeaderProps) {
                 >
                   {location.pathname === link.to ? "সক্রিয়" : ""}
                 </span>
-              </button>
+              </Link>
             ))}
             <div className="pt-3 border-t border-border">
               <button

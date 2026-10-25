@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="হার্বাল চা প্লেসহোল্ডার">
+  <rect width="600" height="600" fill="#E7E2D6"/>
+  <circle cx="300" cy="300" r="212" fill="#FAF8F3"/>
+  <circle cx="300" cy="300" r="212" fill="none" stroke="#1F5D3A" stroke-opacity=".14" stroke-width="2"/>
+  <path d="M258 214q22-34 0-64" fill="none" stroke="#C8963E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M312 214q22-34 0-64" fill="none" stroke="#C8963E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M366 214q22-34 0-64" fill="none" stroke="#C8963E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M208 268h184v34a92 92 0 0 1-184 0Z" fill="#1F5D3A"/>
+  <path d="M392 278a44 44 0 0 1 0 62" fill="none" stroke="#1F5D3A" stroke-width="18" stroke-linecap="round"/>
+  <ellipse cx="300" cy="424" rx="118" ry="18" fill="#174A2E"/>
+  <path d="M422 186c-22 8-35 23-39 46 24-2 37-17 39-46Z" fill="#1F5D3A" opacity=".22"/>
+  <path d="M178 186c22 8 35 23 39 46-24-2-37-17-39-46Z" fill="#1F5D3A" opacity=".22"/>
+</svg>

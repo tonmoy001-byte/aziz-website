@@ -17,7 +17,7 @@ type CartState = {
 
 type CartAction =
   | { type: "LOAD"; items: Record<string, number> }
-  | { type: "ADD"; productId: string }
+  | { type: "ADD"; productId: string; qty: number }
   | { type: "REMOVE"; productId: string }
   | { type: "SET_QTY"; productId: string; qty: number }
   | { type: "CLEAR" };
@@ -57,7 +57,10 @@ function reducer(state: CartState, action: CartAction): CartState {
     case "ADD": {
       const items = {
         ...state.items,
-        [action.productId]: (state.items[action.productId] ?? 0) + 1,
+        [action.productId]: Math.min(
+          (state.items[action.productId] ?? 0) + action.qty,
+          20,
+        ),
       };
       saveCart(items);
       return { items };
@@ -99,7 +102,7 @@ interface CartContextValue {
   total: number;
   deliveryHint: string;
   isEmpty: boolean;
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, qty?: number) => void;
   removeFromCart: (productId: string) => void;
   setQuantity: (productId: string, qty: number) => void;
   clearCart: () => void;
@@ -161,8 +164,12 @@ export function CartProvider({
   }
 
   const addToCart = useCallback(
-    (product: Product) => {
-      dispatch({ type: "ADD", productId: product.id });
+    (product: Product, qty: number = 1) => {
+      dispatch({
+        type: "ADD",
+        productId: product.id,
+        qty: Math.max(1, Math.min(Math.round(qty), 20)),
+      });
     },
     [],
   );
