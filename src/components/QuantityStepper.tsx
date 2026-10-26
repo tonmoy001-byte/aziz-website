@@ -32,26 +32,26 @@ export function QuantityStepper({
 
   return (
     <div
-      className={`flex items-center gap-1 border border-border rounded-xl bg-surface p-1 ${className ?? ""}`}
+      className={`flex items-center gap-1 rounded-xl border border-border bg-surface p-1 ${className ?? ""}`}
     >
       <button
         onClick={decrement}
         disabled={disabled || value <= min}
         aria-label="পরিমাণ কমাতে চাপুন"
-        className="flex w-8 h-8 items-center justify-center rounded-lg text-text transition-colors disabled:opacity-50 disabled:pointer-events-none hover:bg-primary hover:text-surface"
+        className="flex h-9 w-9 items-center justify-center rounded-lg text-text transition-colors hover:bg-primary hover:text-white disabled:pointer-events-none disabled:opacity-40"
       >
-        <Minus className="w-4 h-4" />
+        <Minus className="h-4 w-4" aria-hidden="true" />
       </button>
-      <span className="w-6 text-center font-medium tabular-nums">
+      <span className="w-6 text-center font-semibold tabular-nums">
         {formatBnNumber(value)}
       </span>
       <button
         onClick={increment}
         disabled={disabled || value >= max}
         aria-label="পরিমাণ বাড়াতে চাপুন"
-        className="flex w-8 h-8 items-center justify-center rounded-lg text-text transition-colors disabled:opacity-50 disabled:pointer-events-none hover:bg-primary hover:text-surface"
+        className="flex h-9 w-9 items-center justify-center rounded-lg text-text transition-colors hover:bg-primary hover:text-white disabled:pointer-events-none disabled:opacity-40"
       >
-        <Plus className="w-4 h-4" />
+        <Plus className="h-4 w-4" aria-hidden="true" />
       </button>
     </div>
   );

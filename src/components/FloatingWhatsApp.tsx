@@ -20,7 +20,7 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       onClick={handleClick}
       aria-label="হোয়াটসঅ্যাপে মেসেজ পাঠান"
-      className="fixed right-4 bottom-4 z-50 flex w-14 h-14 items-center justify-center rounded-full bg-[#25D366] text-surface shadow-lg hover:bg-[#1FB053] transition-colors focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+      className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#1FA855] text-white shadow-lift transition-transform hover:scale-105 hover:bg-[#188A46] focus-visible:ring-2 focus-visible:ring-[#1FA855] focus-visible:ring-offset-2"
     >
       <Send className="w-6 h-6" aria-hidden="true" />
       <span className="sr-only-sr">হোয়াটসঅ্যাপে মেসেজ পাঠান</span>
