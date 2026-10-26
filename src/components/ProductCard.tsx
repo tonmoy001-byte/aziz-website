@@ -59,7 +59,7 @@ export function ProductCard({
         <p className="mt-1 text-xs text-muted">{product.sizeBn}</p>
 
         <div className="mt-2.5 flex items-baseline gap-2">
-          <span className="font-heading text-lg font-bold text-primary">
+          <span className="font-heading text-lg font-bold text-accent-hover">
             {formatBdt(product.price)}
           </span>
           {product.oldPrice && (

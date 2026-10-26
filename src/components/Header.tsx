@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, ShoppingCart, X, Truck, Phone, Leaf } from "lucide-react";
+import { Menu, ShoppingCart, X, Phone, Leaf } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { formatBnNumber } from "../utils/bn";
 import { SITE_CONFIG } from "../config/siteConfig";
@@ -33,15 +33,7 @@ export function Header({ onOpenCart }: HeaderProps) {
 
   return (
     <>
-      {/* Announcement bar */}
-      <div className="bg-primary text-accent-soft">
-        <div className="container flex items-center justify-center gap-2 py-2 text-center text-[11px] font-medium sm:text-xs">
-          <Truck className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden="true" />
-          <span>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি · ৳১,৫০০+ কেনাকাটায় ডেলিভারি ফ্রি</span>
-        </div>
-      </div>
-
-      <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-border bg-surface shadow-[0_1px_10px_rgba(26,35,30,0.04)]">
         <div className="container flex h-[72px] items-center justify-between gap-3">
           <Link
             to="/"

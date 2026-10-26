@@ -95,6 +95,11 @@ h6 {
     @apply font-heading text-2xl font-bold text-text sm:text-[28px];
   }
 
+  /* Naturo-style short gold bar under section titles */
+  .title-bar {
+    @apply block h-1 w-14 rounded-full bg-accent;
+  }
+
   .card-surface {
     @apply rounded-2xl border border-border bg-surface shadow-card;
   }
