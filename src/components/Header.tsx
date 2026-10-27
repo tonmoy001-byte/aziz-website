@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, ShoppingCart, X, Phone, Leaf } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 import { formatBnNumber } from "../utils/bn";
 import { SITE_CONFIG } from "../config/siteConfig";
 
@@ -11,10 +12,6 @@ const NAV_LINKS = [
   { to: "/about", label: "আমাদের সম্পর্কে" },
 ] as const;
 
-interface HeaderProps {
-  onOpenCart: () => void;
-}
-
 function BrandMark() {
   return (
     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary text-accent-soft shadow-card">
@@ -23,10 +20,11 @@ function BrandMark() {
   );
 }
 
-export function Header({ onOpenCart }: HeaderProps) {
+export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const { itemCount } = useCart();
+  const { openCart } = useUi();
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
@@ -88,7 +86,7 @@ export function Header({ onOpenCart }: HeaderProps) {
             </a>
 
             <button
-              onClick={onOpenCart}
+              onClick={openCart}
               aria-label={`কার্ট, ${formatBnNumber(itemCount)} আইটেম`}
               className="relative flex min-h-[44px] items-center gap-2 rounded-xl bg-primary px-3.5 text-white transition-colors hover:bg-primary-hover sm:px-4"
             >
@@ -150,7 +148,7 @@ export function Header({ onOpenCart }: HeaderProps) {
                 <button
                   onClick={() => {
                     closeMenu();
-                    onOpenCart();
+                    openCart();
                   }}
                   className="flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-white"
                 >

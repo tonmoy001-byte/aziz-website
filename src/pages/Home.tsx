@@ -16,6 +16,7 @@ import { SITE_CONFIG } from "../config/siteConfig";
 import { ProductCard } from "../components/ProductCard";
 import { DisclaimerBanner } from "../components/DisclaimerBanner";
 import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 import type { Product } from "../types";
 
 interface TrustItem {
@@ -83,14 +84,9 @@ function SectionHead({ title, center = false, linkTo, linkLabel = "সব দে
   );
 }
 
-interface HomeProps {
-  onOpenCart: () => void;
-  onOpenCheckout: (product?: { id: string }) => void;
-}
-
-export function Home({ onOpenCart, onOpenCheckout }: HomeProps) {
+export function Home() {
   const { addToCart } = useCart();
-
+  const { openCart, openCheckout } = useUi();
   const featured = PRODUCTS.filter((p) => p.isFeatured);
   const honey = PRODUCTS.filter((p) => p.categoryBn === "মধু");
   const oils = PRODUCTS.filter((p) => p.categoryBn === "তেল");
@@ -122,12 +118,12 @@ export function Home({ onOpenCart, onOpenCheckout }: HomeProps) {
 
   const handleAdd = (product: Product) => {
     addToCart(product);
-    onOpenCart();
+    openCart();
   };
 
   const handleOrderNow = (product: Product) => {
     addToCart(product);
-    onOpenCheckout(product);
+    openCheckout();
   };
 
   return (
@@ -190,7 +186,7 @@ export function Home({ onOpenCart, onOpenCheckout }: HomeProps) {
               className="absolute -right-4 bottom-6 h-28 w-28 rounded-full bg-primary/10 blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative overflow-hidden rounded-[36px] border border-border bg-primary-soft shadow-card">
+            <div className="relative overflow-hidden rounded-display border border-border bg-primary-soft shadow-card">
               <img
                 src="/products/honey-jar.svg"
                 alt="প্রাকৃতিক মধুর প্রতীকী ছবি"
@@ -315,7 +311,7 @@ export function Home({ onOpenCart, onOpenCheckout }: HomeProps) {
       <section className="py-14 sm:py-16">
         <div className="container grid gap-5 md:grid-cols-2">
           {/* Combo pack promo — dark green */}
-          <div className="relative overflow-hidden rounded-[24px] border border-primary/10 bg-primary">
+          <div className="relative overflow-hidden rounded-card border border-primary/10 bg-primary">
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/5 blur-xl" aria-hidden="true" />
             <div className="relative flex items-center gap-5 p-6 sm:p-8">
               <div className="flex-1">
@@ -347,7 +343,7 @@ export function Home({ onOpenCart, onOpenCheckout }: HomeProps) {
           </div>
 
           {/* Sidr honey promo — parchment */}
-          <div className="relative overflow-hidden rounded-[24px] border border-border bg-accent-soft">
+          <div className="relative overflow-hidden rounded-card border border-border bg-accent-soft">
             <div className="relative flex items-center gap-5 p-6 sm:p-8">
               <div className="flex-1">
                 <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent-hover">

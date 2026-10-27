@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Phone, MapPin, Info, ChevronRight, Send, X } from "lucide-react";
 import { formatBdt, toBnDigits } from "../utils/bn";
 import {
@@ -10,6 +10,7 @@ import {
 } from "../utils/whatsapp";
 import { normalizePhone } from "../utils/validation";
 import { useCart } from "../context/CartContext";
+import { Modal } from "./Modal";
 import { OrderSuccessModal } from "./OrderSuccessModal";
 
 interface CheckoutModalProps {
@@ -212,14 +213,8 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
     onClose();
   }, [clearCart, onClose]);
 
-  // Lock body scroll while checkout is open
-  useEffect(() => {
-    if (!open && !success) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open, success]);
+  // Keep the modal mounted while the success screen is showing on top of it.
+  const viewingSuccess = !open && success !== null;
 
   return (
     <>
@@ -232,21 +227,16 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
           whatsappUrl={success.url}
         />
       )}
-      {!open && !success ? null : (
-        <>
-          <div
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
-            onClick={onClose}
-            aria-hidden="true"
-          />
-          <div
-            className="fixed left-1/2 top-1/2 z-50 flex max-h-[92vh] w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 rounded-3xl border border-border bg-surface p-5 shadow-lift sm:p-6 max-sm:inset-x-0 max-sm:bottom-0 max-sm:top-auto max-sm:max-h-[92dvh] max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none max-sm:rounded-t-3xl"
-            role="dialog"
-            aria-modal="true"
-            aria-label="চেকআউট ও অর্ডার নিশ্চিতকরণ"
-          >
-            <div className="mx-auto mb-1 h-1.5 w-12 shrink-0 rounded-full bg-border sm:hidden" />
-            <div className="flex items-start gap-3">
+      <Modal
+        open={open || viewingSuccess}
+        onClose={viewingSuccess ? handleSuccessClose : onClose}
+        variant="sheet"
+        maxWidth="w-full sm:max-w-[560px]"
+        ariaLabel="চেকআউট ও অর্ডার নিশ্চিতকরণ"
+        className="gap-4 rounded-t-3xl p-5 sm:rounded-3xl sm:p-6"
+      >
+        <div className="mx-auto mb-1 h-1.5 w-12 shrink-0 rounded-full bg-border sm:hidden" />
+        <div className="flex items-start gap-3">
               <div>
                 <span className="eyebrow">চেকআউট</span>
                 <h2 className="mt-1 font-heading text-lg font-bold text-text">
@@ -404,20 +394,18 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
                 <button
                   type="submit"
                   disabled={submitting || cartItems.length === 0}
-                  className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[#1FA855] py-3.5 font-bold text-white transition-colors hover:bg-[#188A46] disabled:pointer-events-none disabled:opacity-50"
+                  className="btn-whatsapp !min-h-[52px] !py-3.5"
                 >
                   <Send className="h-5 w-5" aria-hidden="true" />
                   হোয়াটসঅ্যাপে অর্ডার পাঠান
                 </button>
-                <p className="text-xs leading-relaxed text-muted">
-                  বাটনে ক্লিক করলে হোয়াটসঅ্যাপ খুলবে। সেখানে &quot;Send&quot; চাপলেই আপনার
-                  অর্ডার আমাদের কাছে পৌঁছাবে।
-                </p>
-              </div>
-            </form>
-          </div>
-        </>
-      )}
+              <p className="text-xs leading-relaxed text-muted">
+                বাটনে ক্লিক করলে হোয়াটসঅ্যাপ খুলবে। সেখানে &quot;Send&quot; চাপলেই আপনার
+                অর্ডার আমাদের কাছে পৌঁছাবে।
+              </p>
+            </div>
+          </form>
+        </Modal>
     </>
   );
 }

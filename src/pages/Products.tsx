@@ -4,23 +4,18 @@ import { PRODUCTS } from "../data/products";
 import type { Product } from "../types";
 import { formatBnNumber } from "../utils/bn";
 import { ProductCard } from "../components/ProductCard";
-import { ProductDetailModal } from "../components/ProductDetailModal";
 import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 
-interface ProductsProps {
-  onOpenCart: () => void;
-  onOpenCheckout: (product: Product) => void;
-}
-
-export function Products({ onOpenCart, onOpenCheckout }: ProductsProps) {
+export function Products() {
   const { addToCart } = useCart();
+  const { openCart, openCheckout } = useUi();
   const [query, setQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("সব");
   const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">(
     "default",
   );
-  const [detailProduct, setDetailProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchTerm(query), 200);
@@ -50,17 +45,17 @@ export function Products({ onOpenCart, onOpenCheckout }: ProductsProps) {
   const handleAdd = useCallback(
     (product: Product) => {
       addToCart(product);
-      onOpenCart();
+      openCart();
     },
-    [addToCart, onOpenCart],
+    [addToCart, openCart],
   );
 
   const handleOrderNow = useCallback(
     (product: Product) => {
       addToCart(product);
-      onOpenCheckout(product);
+      openCheckout();
     },
-    [addToCart, onOpenCheckout],
+    [addToCart, openCheckout],
   );
 
   const resetFilters = () => {
@@ -195,23 +190,12 @@ export function Products({ onOpenCart, onOpenCheckout }: ProductsProps) {
                   product={product}
                   onAdd={() => handleAdd(product)}
                   onOrderNow={() => handleOrderNow(product)}
-                  onDetail={() => setDetailProduct(product)}
                 />
               ))}
             </div>
           )}
         </div>
       </main>
-
-      <ProductDetailModal
-        open={detailProduct !== null}
-        onClose={() => setDetailProduct(null)}
-        product={detailProduct!}
-        onOrderNow={(product) => {
-          setDetailProduct(null);
-          onOpenCheckout(product);
-        }}
-      />
     </div>
   );
 }

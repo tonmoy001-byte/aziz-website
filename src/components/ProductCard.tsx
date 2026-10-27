@@ -1,19 +1,18 @@
 import type { Product } from "../types";
-import { Zap, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Zap } from "lucide-react";
 import { formatBdt } from "../utils/bn";
 
 interface ProductCardProps {
   product: Product;
   onAdd?: (product: Product) => void;
   onOrderNow?: (product: Product) => void;
-  onDetail?: (product: Product) => void;
 }
 
 export function ProductCard({
   product,
   onAdd,
   onOrderNow,
-  onDetail,
 }: ProductCardProps) {
   const handleAdd = () => {
     // Adding to cart happens once in the parent's onAdd handler.
@@ -27,7 +26,11 @@ export function ProductCard({
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <div className="relative aspect-square overflow-hidden bg-surface-alt">
+      <Link
+        to={`/products/${product.id}`}
+        className="relative block aspect-square overflow-hidden bg-surface-alt"
+        aria-label={`${product.nameBn} এর বিস্তারিত দেখুন`}
+      >
         <img
           src={product.image}
           alt={product.nameBn}
@@ -50,11 +53,16 @@ export function ProductCard({
             স্টকে নেই
           </span>
         )}
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-2 min-h-[2.9em] font-heading text-[15px] font-semibold leading-snug text-text">
-          {product.nameBn}
+        <h3 className="line-clamp-2 min-h-[2.9em] font-heading text-[15px] font-semibold leading-snug">
+          <Link
+            to={`/products/${product.id}`}
+            className="text-text transition-colors hover:text-primary"
+          >
+            {product.nameBn}
+          </Link>
         </h3>
         <p className="mt-1 text-xs text-muted">{product.sizeBn}</p>
 
@@ -92,17 +100,6 @@ export function ProductCard({
               </button>
             )}
           </div>
-
-          {onDetail && (
-            <button
-              onClick={() => onDetail(product)}
-              aria-label={`${product.nameBn} এর বিস্তারিত দেখুন`}
-              className="inline-flex min-h-[36px] items-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary-hover"
-            >
-              বিস্তারিত দেখুন
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </button>
-          )}
         </div>
       </div>
     </article>

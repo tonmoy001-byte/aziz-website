@@ -16,6 +16,16 @@
   --color-border: #e5dccb;
   --color-success: #15803d;
   --color-error: #b91c1c;
+  --color-caution: #7c2d12;
+
+  /* WhatsApp brand green — used for all direct-order surfaces */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hover: #1dab52;
+  --color-whatsapp-deep: #1fa855;
+
+  /* Corner-radius scale (Tailwind defaults cover sm..3xl; these add tiers) */
+  --radius-card: 1.5rem; /* 24px — promo banners, large media */
+  --radius-display: 2.25rem; /* 36px — hero/display visuals */
 
   /* ——— Typography ——— */
   --font-heading: "Noto Serif Bengali", ui-serif, Georgia, Cambria, "Times New Roman", serif;
@@ -114,6 +124,10 @@ h6 {
 
   .btn-ghost {
     @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 text-sm font-semibold text-text transition-all duration-200 hover:border-primary/40 hover:bg-primary-soft active:scale-[0.98];
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 text-sm font-bold text-white transition-colors hover:bg-whatsapp-hover disabled:pointer-events-none disabled:opacity-50;
   }
 
   .chip {
